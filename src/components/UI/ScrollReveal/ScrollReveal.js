@@ -12,7 +12,7 @@ class ScrollAnimation extends React.Component {
 
     this.ref = React.createRef();
 
-    this.throttleInterval = 20;
+    this.throttleInterval = 0;
     this.lastScrollTime = 0;
 
     this.state = {
@@ -34,8 +34,8 @@ class ScrollAnimation extends React.Component {
     if (this.lastScrollTime + this.throttleInterval < now) {
       if (this.getIsReveal()) {
         setTimeout(() => {
-          this.setIsReveal(true);
-          this.removeScrollListener();
+        this.setIsReveal(true);
+
         }, this.props.delay);
       } else {
         clearTimeout(this.isSetTimeout);
@@ -50,7 +50,7 @@ class ScrollAnimation extends React.Component {
     if (!this.state.isReveal && this.getIsReveal()) {
       setTimeout(() => {
         this.setIsReveal(true);
-        this.removeScrollListener();
+        // this.removeScrollListener();
       }, this.props.delay);
     }
   }
@@ -61,7 +61,11 @@ class ScrollAnimation extends React.Component {
   }
 
   setIsReveal = isReveal => {
-    this.setState({ isReveal: isReveal });
+    this.setState({ isReveal: isReveal }, () => {
+      if (isReveal) {
+        this.removeScrollListener();
+      }
+    });
   };
 
   getIsReveal() {
@@ -77,19 +81,19 @@ class ScrollAnimation extends React.Component {
     const transitionStyles = {
       entering: {
         opacity: 0,
-        transform: "translateY(50px)"
+        transform: "translateY(125px)"
       },
       entered: {
         opacity: 1,
         transform: "translateY(0px)",
         transition: `opacity ${this.props.duration}ms, transform ${
           this.props.duration
-        }ms cubic-bezier(0,.79,0,-0.18)`
+        }ms ease-out`
       }
     };
 
     return (
-      <Transition in={this.state.isReveal} timeout={this.props.duration}>
+      <Transition in={this.state.isReveal} timeout={{enter: 0, entering: this.props.duration}}>
         {transitionState => (
           <div
             style={{
@@ -112,8 +116,8 @@ ScrollAnimation.propTypes = {
 };
 
 ScrollAnimation.defaultProps = {
-  duration: 400, // duration in milliseconds
-  revealThreshold: 0.95, // reveal position relative to top of viewport. 1 = 100% viewport height.
+  duration: 900, // duration in milliseconds
+  revealThreshold: 0.90, // reveal position relative to top of viewport. 1 = 100% viewport height.
   delay: 0
 };
 

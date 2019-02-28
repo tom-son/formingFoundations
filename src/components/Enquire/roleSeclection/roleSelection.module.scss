@@ -1,0 +1,27 @@
+.roleContainer {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.studentParentImg {
+  width: 160px;
+  height: 140px;
+  background-image: url("../../../assets/images/parent-student.png");
+  background-repeat: none;
+  background-position: center center;
+  background-size: contain;
+}
+
+
+@media(min-width: 750px) {
+  .studentParentImg {
+    width: 280px;
+    height: 260px;
+  }
+  .roleContainer {
+    position: absolute;
+    top: 40%;
+  }
+}
