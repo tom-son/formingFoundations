@@ -2,7 +2,7 @@ import React from "react";
 import { Transition } from "react-transition-group";
 import PropTypes from "prop-types";
 
-class ScrollAnimation extends React.Component {
+class ScrollReveal extends React.Component {
   constructor(props) {
     super(props);
 
@@ -12,7 +12,7 @@ class ScrollAnimation extends React.Component {
 
     this.ref = React.createRef();
 
-    this.throttleInterval = 0;
+    this.throttleInterval = 30;
     this.lastScrollTime = 0;
 
     this.state = {
@@ -21,6 +21,7 @@ class ScrollAnimation extends React.Component {
   }
 
   componentDidMount() {
+    this.scrollEventHandler();  // check if isReveal for cases with ScrollReveal component in viewport and page has no scroll (initially), it won't set isReveal when we want it to reveal.
     document.addEventListener("scroll", this.scrollEventHandler);
   }
 
@@ -29,29 +30,25 @@ class ScrollAnimation extends React.Component {
   }
 
   scrollEventHandler() {
-    const now = Date.now();
-    // if condition for throttling purposes
-    if (this.lastScrollTime + this.throttleInterval < now) {
-      if (this.getIsReveal()) {
-        setTimeout(() => {
-        this.setIsReveal(true);
-
-        }, this.props.delay);
-      } else {
-        clearTimeout(this.isSetTimeout);
-        this.isSetTimeout = setTimeout(this.scrollTail, this.throttleInterval);
-        this.lastScrollTime = now;
+    window.requestAnimationFrame(()=>{
+      const now = Date.now();
+      // if condition for throttling purposes
+      if (this.lastScrollTime + this.throttleInterval < now) {
+        if (this.getIsReveal()) {
+          this.setIsReveal(true);
+        } else {
+          clearTimeout(this.isSetTimeout);
+          this.isSetTimeout = setTimeout(this.scrollTail, this.throttleInterval);
+          this.lastScrollTime = now;
+        }
       }
-    }
+    })
   }
 
   scrollTail() {
-    console.log("scrollTail");
-    if (!this.state.isReveal && this.getIsReveal()) {
-      setTimeout(() => {
-        this.setIsReveal(true);
-        // this.removeScrollListener();
-      }, this.props.delay);
+    if (this.getIsReveal()) {
+      console.log("scrollTail");
+      this.setIsReveal(true);
     }
   }
 
@@ -61,11 +58,10 @@ class ScrollAnimation extends React.Component {
   }
 
   setIsReveal = isReveal => {
-    this.setState({ isReveal: isReveal }, () => {
-      if (isReveal) {
-        this.removeScrollListener();
-      }
-    });
+    this.setState({ isReveal: isReveal });
+    if (isReveal) {
+      this.removeScrollListener();
+    }
   };
 
   getIsReveal() {
@@ -81,7 +77,6 @@ class ScrollAnimation extends React.Component {
     const transitionStyles = {
       entering: {
         opacity: 0,
-        transform: "translateY(125px)"
       },
       entered: {
         opacity: 1,
@@ -97,6 +92,7 @@ class ScrollAnimation extends React.Component {
         {transitionState => (
           <div
             style={{
+              transform: "translateY(85px)",
               ...defaultStyle,
               ...transitionStyles[transitionState]
             }}
@@ -109,16 +105,17 @@ class ScrollAnimation extends React.Component {
   }
 }
 
-ScrollAnimation.propTypes = {
+ScrollReveal.propTypes = {
   duration: PropTypes.number,
   revealThreshold: PropTypes.number,
-  delay: PropTypes.number
+  delay: PropTypes.number,
+  children: PropTypes.func.isRequired
 };
 
-ScrollAnimation.defaultProps = {
+ScrollReveal.defaultProps = {
   duration: 900, // duration in milliseconds
-  revealThreshold: 0.90, // reveal position relative to top of viewport. 1 = 100% viewport height.
+  revealThreshold: 0.98, // reveal position relative to top of viewport. 1 = 100% viewport height.
   delay: 0
 };
 
-export default ScrollAnimation;
+export default ScrollReveal;

@@ -58,6 +58,9 @@ class Button extends React.Component {
           padding: "20px 40px",
           overflow: "hidden",
           border: "none",
+          backgroundColor: "inherit",
+          width: "100%",
+          height: "100%",
         }}
       >
         {props.children(state.isHover)}

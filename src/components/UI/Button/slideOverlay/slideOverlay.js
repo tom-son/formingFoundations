@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './slideOverlay.module.scss';
 import Button from '../Button/Button';
 
-const sliding = props => {
+const slideOverlay = props => {
   return (
     <Button>
       {(isHover)=> (
@@ -11,24 +12,24 @@ const sliding = props => {
             style={{
               display: "inline-block",
               opacity: `${isHover ? 0 : 1}`,
-              transition: "0.2s ease-out",
-              transform: `${isHover ? "translate(-20px, 0)": "translate(0px, 0)"}`
+              transition: "0.2s ease",
+              transform: `${isHover ? "translate(-40px, 0)": "translate(0px, 0)"}`
             }}
           >
-            GET DIRECTIONS
+            {props.children}
           </span>
           <span
             style={{
               display: "block",
               position: "absolute",
-              top: "0px",
+              top: "-10%",
               left: "0px",
               width: "150%",
-              height: "100%",
+              height: "120%",
               opacity: `${isHover ? 1 : 0}`,
-              transition: "0.3s ease-out",
+              transition: "0.3s ease",
               transform: `${isHover ? "translate(-10%, 0px) skew(-45deg)" : "translate(100%, 0)"}`,
-              backgroundColor: "rgba(150,0,0,0.6)"
+              backgroundColor: `rgb(${props.rgb},${props.opacity})`
             }}
           >
           </span>
@@ -42,11 +43,24 @@ const sliding = props => {
               transition: "0.2s ease",
               opacity: `${isHover ? 1 : 0}`,
             }}
-          >GET DIRECTIONS</span>
+          >
+            {props.children}
+          </span>
         </React.Fragment>
       )}
     </Button>
   );
 };
 
-export default sliding;
+slideOverlay.propTypes = {
+  children: PropTypes.element.isRequired,
+  rgb: PropTypes.string,
+  opacity: PropTypes.number
+}
+
+slideOverlay.defaultProps = {
+  rgb: "10,10,10",
+  opacity: 0.6
+}
+
+export default slideOverlay;

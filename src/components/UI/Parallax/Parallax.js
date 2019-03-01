@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import classes from "./Parallax.module.scss";
 
 class Parallax extends React.Component {
@@ -51,7 +52,10 @@ class Parallax extends React.Component {
   render() {
     const { props } = this;
     return (
-      <div ref={this.containerRef} className={classes.parallax}>
+      <div 
+        ref={this.containerRef}
+        className={classes.parallax}
+      >
         <img
           ref={this.backgroundRef}
           className={classes.background}
@@ -62,6 +66,11 @@ class Parallax extends React.Component {
       </div>
     );
   }
+}
+
+Parallax.propTypes = {
+  src: PropTypes.string.isRequired,
+  children: PropTypes.element,
 }
 
 export default Parallax;
