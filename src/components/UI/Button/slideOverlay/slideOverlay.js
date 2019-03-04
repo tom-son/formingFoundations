@@ -24,11 +24,11 @@ const slideOverlay = props => {
               position: "absolute",
               top: "-10%",
               left: "0px",
-              width: "150%",
+              width: "200%",
               height: "120%",
               opacity: `${isHover ? 1 : 0}`,
               transition: "0.3s ease",
-              transform: `${isHover ? "translate(-10%, 0px) skew(-45deg)" : "translate(100%, 0)"}`,
+              transform: `${isHover ? "translate(-10%, 0px) skew(-20deg)" : "translate(100%, 0)"}`,
               backgroundColor: `rgb(${props.rgb},${props.opacity})`
             }}
           >

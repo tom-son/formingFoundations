@@ -12,7 +12,7 @@ class ScrollReveal extends React.Component {
 
     this.ref = React.createRef();
 
-    this.throttleInterval = 30;
+    this.throttleInterval = 100;
     this.lastScrollTime = 0;
 
     this.state = {
@@ -35,10 +35,12 @@ class ScrollReveal extends React.Component {
       // if condition for throttling purposes
       if (this.lastScrollTime + this.throttleInterval < now) {
         if (this.getIsReveal()) {
-          this.setIsReveal(true);
+          // setTimeout(()=>
+          this.setIsReveal(true)
+          // , this.props.delay)
         } else {
-          clearTimeout(this.isSetTimeout);
-          this.isSetTimeout = setTimeout(this.scrollTail, this.throttleInterval);
+          // clearTimeout(this.isSetTimeout);
+          // this.isSetTimeout = setTimeout(this.scrollTail, this.throttleInterval);
           this.lastScrollTime = now;
         }
       }
@@ -46,8 +48,8 @@ class ScrollReveal extends React.Component {
   }
 
   scrollTail() {
+    console.log("scrollTail");
     if (this.getIsReveal()) {
-      console.log("scrollTail");
       this.setIsReveal(true);
     }
   }
@@ -58,6 +60,7 @@ class ScrollReveal extends React.Component {
   }
 
   setIsReveal = isReveal => {
+    console.log("reveal", this.props.delay)
     this.setState({ isReveal: isReveal });
     if (isReveal) {
       this.removeScrollListener();
@@ -77,6 +80,7 @@ class ScrollReveal extends React.Component {
     const transitionStyles = {
       entering: {
         opacity: 0,
+        transform: "translateY(85px)"
       },
       entered: {
         opacity: 1,
@@ -92,7 +96,7 @@ class ScrollReveal extends React.Component {
         {transitionState => (
           <div
             style={{
-              transform: "translateY(85px)",
+              // transform: "translateY(85px)",
               ...defaultStyle,
               ...transitionStyles[transitionState]
             }}

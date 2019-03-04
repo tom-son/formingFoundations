@@ -48,7 +48,7 @@ const home = props => {
             </p>    
           )}
         </ScrollReveal>
-        <ScrollReveal delay={300}>
+        <ScrollReveal delay={400}>
           {ref => (
             <span
               ref={ref}
@@ -98,7 +98,7 @@ const home = props => {
             <h1 ref={ref}>OUR SUBJECTS</h1>
           )}
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal delay={300}>
           {ref => (
             <p ref={ref}>
               We teach students from year 1 to HSC. All subjects are taught in
@@ -107,7 +107,7 @@ const home = props => {
             </p>
           )}
         </ScrollReveal>
-        <ScrollReveal>
+        <ScrollReveal delay={600}>
           {ref => (
             <p ref={ref}>
                Mathematics Years 1 – 2 1 hr Years 3 – 5 1.5 hrs Years 6 – HSC 2
@@ -116,7 +116,7 @@ const home = props => {
             </p>
           )}
         </ScrollReveal>
-        <ScrollReveal delay={600}>
+        <ScrollReveal delay={900}>
           {ref => (
             <span
               ref={ref}
@@ -142,16 +142,14 @@ const home = props => {
         )}
       </ScrollReveal>
       <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "50vh", backgroundColor: "#177CF9", opacity: "0.9", textAlign: "center"}}>
-        <h1 style={{color: "white"}}>Get started with <br/> Forming Foundations</h1>
+        <h1 style={{color: "white"}}>Get started with Forming Foundations</h1>
         <span 
-          // style={{display: "inline-block", width: "60%", height: "60px", border: "2px solid white", borderRadius: "4px"}}
           className={classes.enquireButton}
         >
           <UIButtonSlideOverlay rgb="255,255,255" opacity={1}>
             <span className={classes.subjectCardButtonText}>ENQUIRE NOW</span>
           </UIButtonSlideOverlay>
         </span>
-
       </div>
     </main>
   );
