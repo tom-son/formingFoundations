@@ -1,0 +1,25 @@
+.sideMenuContainer {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  transition: 0.3s ease-out;
+  z-index: 900;
+}
+
+.sideMenuShow {
+  opacity: 1;
+  transform: translateY(0vh);
+}
+
+.sideMenuHide {
+  opacity: 0;
+  transform: translateY(-100vh);
+}
+
+.navItemsWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}

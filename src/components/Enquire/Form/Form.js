@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+import classes from "./Form.module.scss";
+import UIButtonSlide from '../../UI/Button/slideOverlay/slideOverlay';
 
 class form extends React.Component {
   constructor(props) {
@@ -9,57 +11,79 @@ class form extends React.Component {
       lastName: "",
       email: "",
       contactNumber: ""
-    }
+    };
   }
 
-  inputOnChange = (e) => {
-    this.setState({[e.target.id]: e.target.value});
-  }
+  inputOnChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
 
-  sendEnquiry = (e) => {
+  sendEnquiry = e => {
     e.preventDefault();
     console.log(this.state);
-  }
+  };
 
   render() {
     const { state } = this;
     return (
-      <form>
-        <h2>What's your name?</h2>
-        <input 
-          id="firstName"
-          type="text"
-          value={state.firstName}
-          onChange={this.inputOnChange}
-          placeholder="First name"
-        />
-        <input 
-          id="lastName"
-          type="text"
-          value={state.lastName}
-          onChange={this.inputOnChange}
-          placeholder="Last name"
-        />
-        <h2>What's your email address?</h2>
+      <form className={classes.form}>
+        <label htmlFor="firstName">What's your name?</label>
+        <div className={classes.nameInput}>
+          <input
+            className={classes.input}
+            id="firstName"
+            type="text"
+            value={state.firstName}
+            onChange={this.inputOnChange}
+            placeholder="First name"
+          />
+          <input
+            className={classes.input}
+            id="lastName"
+            type="text"
+            value={state.lastName}
+            onChange={this.inputOnChange}
+            placeholder="Last name"
+          />
+        </div>
+        <label htmlFor="grade">Child's grade?</label>
         <input
-          id="email" 
+          className={classes.input}
+          id="grade"
+          type="text"
+          value={state.email}
+          onChange={this.inputOnChange}
+          placeholder="Grade"
+        />
+        <label htmlFor="email">What's your email address?</label>
+        <input
+          className={classes.input}
+          id="email"
           type="text"
           value={state.email}
           onChange={this.inputOnChange}
           placeholder="Email"
         />
-        <h2>Best contact number?</h2>
+        <label htmlFor="contactNumber">Best contact number?</label>
         <input
+          className={classes.input}
           id="contactNumber"
           type="number"
           value={state.contactNumber}
           onChange={this.inputOnChange}
           placeholder="Contact number"
         />
-        <button onClick={this.sendEnquiry}>SEND ENQUIRY</button>
+        <div className={classes.enquiryButton} style={{backgroundColor: "blue"}}>
+          <UIButtonSlide
+            rgb="40,40,200"
+          >
+            <span>SEND ENQUIRY</span>
+          </UIButtonSlide>
+        </div>
+
       </form>
     );
   }
-};
+}
 
 export default form;

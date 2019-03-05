@@ -1,7 +1,8 @@
 import React from 'react';
-import classes from './FlickButton.module.scss';
+import PropTypes from 'prop-types';
+import classes from './Flick.module.scss';
 
-class FlickButton extends React.Component {
+class Flick extends React.Component {
 
   constructor(props) {
     super(props);
@@ -57,12 +58,16 @@ class FlickButton extends React.Component {
         ref={this.buttonRef}
         style={{
           position: "relative",
-          // border: "1px solid black",
-          padding: "20px 40px",
-          // background: "#111517",
+          padding: props.padding,
           overflow: "hidden",
           border: "none",
+          backgroundColor: "inherit",
+          fontSize: props.fontSize,
+          fontWeight: 800,
+          fontFamily: "Oswald",
+          letterSpacing: "1px"
         }}
+        onClick={props.onClick}
       >
         <span 
           className={`${classes.buttonText}`}
@@ -70,31 +75,33 @@ class FlickButton extends React.Component {
             position: "relative",
             transform: `${state.isHover ? "translate(0, -20px)" : "translate(0, 0px)"}`,
             opacity: `${state.isHover ? 0 : 1}`,
-            fontSize: "1rem",
-            fontWeight: 800,
-            color: "grey",
-            letterSpacing: "1px"
-            // transition: `${"0.1s ease-out"}`
+            color: props.baseColor,
           }}
         >{props.children}</span>
         <span 
           className={`${classes.buttonText} ${classes.bottom}`}
           style={{
             position: "absolute",
-            // transform: `${state.isHover ? "translate(0, 0": "translate(0, 20px)"}`,
             opacity: `${state.isHover ? 1 : 0}`,
-            fontSize: "1rem",
-            fontWeight: 800,
-            color: "#ef0d33",
-            letterSpacing: "1px",
+            color: props.hoverColor,
             top: `${state.isHover ? "50%" : "90%"}`,
             left: "50%",
-            transform: "translate(-50%, -50%)"
-            // transition: `${"0.1s ease-out"}`
+            transform: "translate(-50%, -50%)",
           }}>{props.children}</span>
       </button>
     );
   };
 };
 
-export default FlickButton;
+Flick.propTypes = {
+
+}
+
+Flick.defaultProps = {
+  padding: "20px 40px",
+  baseColor: "white",
+  hoverColor: "#177CF9",
+  fontSize: "1.2rem"
+}
+
+export default Flick;

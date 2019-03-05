@@ -4,7 +4,7 @@ import ContactUs from '../components/contactUs/contactUs';
 
 const contactUs = props => {
   return (
-    <Route path="/contact-us" component={ContactUs}/>
+    <Route path="/contact" component={ContactUs}/>
   );
 };
 

@@ -19,7 +19,8 @@ class Parallax extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener(this.scrollAnimationFrame)
+    window.removeEventListener("scroll", this.scrollAnimationFrame)
+    window.removeEventListener("resize", this.scrollAnimationFrame)
   }
 
   scrollAnimationFrame() {

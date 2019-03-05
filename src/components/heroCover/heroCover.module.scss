@@ -1,0 +1,68 @@
+@import "../../assets/sass/font.module.scss";
+@import "../../assets//sass/color.module.scss";
+
+.heroCover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+
+  .heroCoverButton {
+    margin: 80px 0;
+    border: 1px solid rgb(86, 202, 213);
+    &:hover {
+      border-color: rgb(47, 117, 150);
+    }
+    span {
+      color: white;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.heroCoverTitle {
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-family: $headerFont;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.heroCoverSummary {
+  font-size: 0.87rem;
+}
+
+.line {
+  width: 40px;
+  height: 2px;
+  margin: 30px auto;
+  background-color: rgb(21, 126, 138);
+}
+
+@media(min-width: 770px) {
+  .heroCover {
+    width: 700px;
+    left: 0;
+    margin-left: 130px;
+    transform: translate(0, -50%);
+    text-align: left;
+  }
+  
+  .line {
+    height: 3px;
+    margin: 30px 0;
+  }
+
+  .heroCoverTitle {
+    font-size: 4.7rem;
+  }
+
+  .heroCoverSummary {
+    font-size: 1.1rem;
+  }
+}

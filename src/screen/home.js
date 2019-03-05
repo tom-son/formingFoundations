@@ -4,9 +4,9 @@ import Home from '../components/home/home';
 
 const home = props => {
   return (
-    <React.Fragment>
+    // <React.Fragment>
       <Route path="/" exact component={Home} />
-    </React.Fragment>
+    // </React.Fragment>
   );
 };
 

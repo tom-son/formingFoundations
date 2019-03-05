@@ -3,7 +3,6 @@ import classes from "./heroCover.module.scss";
 import VideoBanner from "../../UI/VideoBanner/VideoBanner";
 import ScrollReveal from "../../UI/ScrollReveal/ScrollReveal";
 import UIButtonSlideOverlay from '../../UI/Button/slideOverlay/slideOverlay';
-import NavBar from '../../../components/navBar/navBar';
 
 const heroCover = props => {
   return (
@@ -13,10 +12,6 @@ const heroCover = props => {
         height: "100vh"
       }}
     >
-      <div style={{position: "absolute", width: "90%", top: "20px", left: "5%", zIndex: 10, color: "#56cad5"}}>
-        <NavBar />
-      </div>
-
       <VideoBanner
         url="https://www.matrix.edu.au/wp-content/themes/matrix_2015/video/matrix-video-banner.mp4"
         rgb="10,10,10"

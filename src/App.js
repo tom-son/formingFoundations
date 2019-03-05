@@ -4,16 +4,20 @@ import ScreenEnquire from './screen/enquire';
 import ScreenHome from './screen/home';
 import ScreenContactUs from './screen/contactUs';
 import ScreenAbout from './screen/about';
-
+import Layout from './components/Layout/Layout';
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
         <ScreenEnquire />
-        <ScreenHome />
-        <ScreenContactUs />
-        <ScreenAbout />
+        <Layout>
+          <React.Fragment>
+            <ScreenHome />
+            <ScreenContactUs />
+            <ScreenAbout />
+          </React.Fragment>
+        </Layout>
       </React.Fragment>
     );
   }

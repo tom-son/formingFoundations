@@ -2,12 +2,25 @@ import React from "react";
 import classes from "./home.module.scss";
 import ScrollReveal from "../UI/ScrollReveal/ScrollReveal";
 import UIButtonSlideOverlay from "../UI/Button/slideOverlay/slideOverlay";
-import HeroCover from './heroCover/heroCover';
+// import HeroCover from './heroCover/heroCover';
+import VideoBanner from "../UI/VideoBanner/VideoBanner";
+import HeroCover from '../heroCover/heroCover';
 
 const home = props => {
   return (
     <main>
-      <HeroCover />
+      {/* <HeroCover /> */}
+      <HeroCover 
+        title="Boost marks and confidence"
+        summary="We teach students from year 1 to 6. All subjects are taught in ten-week terms. Our quality tuition is great starting at $20! Look at our Results page."
+        background={(
+          <VideoBanner
+            url="https://www.matrix.edu.au/wp-content/themes/matrix_2015/video/matrix-video-banner.mp4"
+            rgb="10,10,10"
+            opacity="0.8"
+          />
+        )}
+      />
       <div className={classes.paragraphQuote}>
         <ScrollReveal>
           {/* <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC 3.0 BY</a></div> */}
@@ -143,7 +156,7 @@ const home = props => {
       </ScrollReveal>
       <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "50vh", backgroundColor: "#177CF9", opacity: "0.9", textAlign: "center"}}>
         <h1 style={{color: "white"}}>Get started with Forming Foundations</h1>
-        <span 
+        <span
           className={classes.enquireButton}
         >
           <UIButtonSlideOverlay rgb="255,255,255" opacity={1}>

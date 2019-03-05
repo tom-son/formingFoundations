@@ -1,0 +1,47 @@
+label {
+  display: block;
+  margin: 25px 0 15px 0;
+}
+
+.input {
+  width: 100%;
+  height: 50px;
+
+  &::placeholder {
+    color: #aaa;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding-left: 10px;
+  }
+  margin-bottom: 5px;
+}
+
+.enquiryButton {
+  span {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+  }
+  &:hover {
+    span {
+      color: white;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .form {
+    width: 580px;
+    margin: 0 auto;
+  }
+}
+
+@media(min-width: 770px) {
+  .nameInput {
+    display: flex;
+    justify-content: space-between;
+    input {
+      width: 48%;
+    }
+  }
+}

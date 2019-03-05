@@ -1,13 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import About from '../components/about/about';
-import Layout from '../components/Layout/Layout';
 
 const aboutUs = props => {
   return (
-    <Layout>
+    <Switch>
       <Route path="/about" component={About} />
-    </Layout>
+    </Switch>
   );
 };
 
